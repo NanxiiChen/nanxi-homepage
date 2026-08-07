@@ -1,0 +1,9 @@
+node_modules/
+.astro/
+dist/
+.DS_Store
+
+# Local planning and research notes
+findings.md
+progress.md
+task_plan.md

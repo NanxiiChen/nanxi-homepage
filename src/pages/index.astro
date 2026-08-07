@@ -1,0 +1,258 @@
+---
+import "../styles/global.css";
+import PublicationCard from "../components/PublicationCard.astro";
+import { education, profile, researchAreas } from "../data/profile";
+
+interface PublicationFrontmatter {
+  year: number;
+  category: "scientific-ml" | "wind" | "software";
+  type: string;
+  title: string;
+  authors: string;
+  venue: string;
+  citations?: number;
+  paperUrl: string;
+  scholarUrl: string;
+  codeUrl?: string;
+  codeLabel?: string;
+}
+
+interface PublicationEntry {
+  frontmatter: PublicationFrontmatter;
+  Content: any;
+}
+
+const publicationModules = import.meta.glob<PublicationEntry>("../content/publications/*.md", { eager: true });
+const publications = Object.values(publicationModules).sort((a, b) => b.frontmatter.year - a.frontmatter.year);
+const codebaseCount = new Set(publications.filter(({ frontmatter }) => frontmatter.codeUrl).map(({ frontmatter }) => frontmatter.codeUrl)).size;
+const categoryCounts = {
+  scientificMl: publications.filter(({ frontmatter }) => frontmatter.category === "scientific-ml").length,
+  wind: publications.filter(({ frontmatter }) => frontmatter.category === "wind").length,
+  software: publications.filter(({ frontmatter }) => frontmatter.category === "software").length
+};
+const availableContactLinks = [
+  ...(profile.email ? [{ label: "Email", shortLabel: profile.email, href: `mailto:${profile.email}`, description: "Say hello", icon: "email" as const }] : []),
+  ...profile.links.filter((link) => link.href)
+];
+const publicProfileLinks = profile.links.filter((link) => link.href);
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Nanxi Chen — PhD candidate at Tongji University working across scientific machine learning, phase-field modelling, and wind engineering." />
+    <meta property="og:title" content="Nanxi Chen — Academic Homepage" />
+    <meta property="og:description" content="Research, publications, and open-source scientific software by Nanxi Chen." />
+    <meta property="og:type" content="website" />
+    <title>Nanxi Chen — Academic Homepage</title>
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="wordmark" href="#top" aria-label="Nanxi Chen home">
+          <span class="wordmark-name">Nanxi Chen</span>
+          <span class="wordmark-role">Academic homepage</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span></span><span></span>
+        </button>
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#research">Publications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="top" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-main">
+            <p class="eyebrow">Nanxi Chen <span>·</span> {profile.chineseName}</p>
+            <h1>Scientific machine learning<br />for physical systems.</h1>
+            <p class="hero-summary">I am a PhD candidate in Bridge Engineering at Tongji University. My work develops physics-informed models and efficient computational tools for complex physical systems.</p>
+            <div class="hero-links" aria-label="External profiles">
+              {publicProfileLinks.map((link) => (
+                <a href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>
+              ))}
+            </div>
+          </div>
+
+          <aside class="profile-aside" aria-label="Profile summary">
+            <p class="aside-heading">Profile</p>
+            <dl class="profile-list">
+              <div>
+                <dt>Position</dt>
+                <dd>{profile.role}</dd>
+              </div>
+              <div>
+                <dt>Affiliation</dt>
+                <dd>{profile.institution}</dd>
+              </div>
+              <div>
+                <dt>Location</dt>
+                <dd>{profile.location}</dd>
+              </div>
+              <div>
+                <dt>ORCID</dt>
+                <dd><a href={`https://orcid.org/${profile.orcid}`} target="_blank" rel="noreferrer">{profile.orcid}</a></dd>
+              </div>
+              {profile.email && (
+                <div class="profile-contact">
+                  <dt>Contact</dt>
+                  <dd><a class="profile-email" href={`mailto:${profile.email}`}>{profile.email}</a></dd>
+                </div>
+              )}
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <div class="academic-rule" aria-hidden="true"></div>
+
+      <section class="summary-strip" aria-label="Research summary">
+        <div class="container summary-grid">
+          <div><strong>{publications.length}</strong><span>Publications</span></div>
+          <div><strong>{codebaseCount}</strong><span>Open-source codebases</span></div>
+          <div><strong>{researchAreas.length}</strong><span>Research areas</span></div>
+          <div class="summary-focus"><strong>Research focus</strong><span>Physics-informed ML · Phase-field modelling · Wind engineering</span></div>
+        </div>
+      </section>
+
+      <section id="about" class="content-section">
+        <div class="container two-column">
+          <div class="section-label">
+            <span>01</span>
+            <h2>About</h2>
+          </div>
+          <div class="section-body">
+            <p class="intro-text">My research explores how physics-informed learning can help us understand, simulate, and predict complex physical systems.</p>
+            <p>I am particularly interested in phase-field modelling, scientific machine learning, and computational methods for civil and wind engineering. Alongside publications, I release reproducible implementations and scientific software whenever possible.</p>
+            <p>The goal is to develop methods that are not only accurate, but also interpretable, efficient, and useful to other researchers.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="content-section section-muted">
+        <div class="container two-column">
+          <div class="section-label">
+            <span>02</span>
+            <h2>Education</h2>
+          </div>
+          <div class="education-list">
+            {education.map((item) => (
+              <article class="education-item">
+                <p class="education-years">{item.years}</p>
+                <div>
+                  <h3>{item.degree}</h3>
+                  <p>{item.field}</p>
+                  <span>{item.institution} · {item.location}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="content-section publications-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">
+              <span>03</span>
+              <h2>Publications</h2>
+            </div>
+            <p>Selected publications and associated research software.</p>
+          </div>
+
+          <div class="publication-toolbar" role="group" aria-label="Filter publications">
+            <button class="filter-button is-active" type="button" data-filter="all">All <span>{publications.length}</span></button>
+            <button class="filter-button" type="button" data-filter="scientific-ml">Scientific ML <span>{categoryCounts.scientificMl}</span></button>
+            <button class="filter-button" type="button" data-filter="wind">Wind engineering <span>{categoryCounts.wind}</span></button>
+            <button class="filter-button" type="button" data-filter="software">Software <span>{categoryCounts.software}</span></button>
+          </div>
+
+          <div class="publication-grid" id="publications-grid" aria-live="polite">
+            {publications.map((publication, index) => <PublicationCard publication={publication} index={index} />)}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="content-section section-muted contact-section">
+        <div class="container two-column">
+          <div class="section-label">
+            <span>04</span>
+            <h2>Contact</h2>
+          </div>
+          <div class="contact-body">
+            <p class="intro-text">For research discussions, collaboration, or questions about the code, please use one of the links below.</p>
+            <div class="contact-links">
+              {availableContactLinks.map((link) => (
+                <a class="contact-link" href={link.href} target={link.href.startsWith("mailto:") ? undefined : "_blank"} rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}>
+                  <span>{link.label}</span>
+                  <small>{link.shortLabel || link.description}</small>
+                  <b aria-hidden="true">↗</b>
+                </a>
+              ))}
+            </div>
+            {profile.researchGate === "" && <p class="content-note">Add your ResearchGate profile URL in <code>src/data/profile.ts</code>.</p>}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <span>© {new Date().getFullYear()} {profile.name}</span>
+        <span>{profile.institution} · {profile.location}</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <script>
+      const buttons = [...document.querySelectorAll<HTMLButtonElement>(".filter-button")];
+      const cards = [...document.querySelectorAll<HTMLElement>(".publication-card")];
+      const emptyState = document.createElement("p");
+      emptyState.className = "empty-state";
+      emptyState.textContent = "No publications in this category yet.";
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.filter;
+          buttons.forEach((item) => item.classList.toggle("is-active", item === button));
+          let visible = 0;
+          cards.forEach((card) => {
+            const matches = filter === "all" || card.dataset.category === filter;
+            card.hidden = !matches;
+            if (matches) visible += 1;
+          });
+          if (visible === 0) document.querySelector("#publications-grid")?.append(emptyState);
+          else emptyState.remove();
+        });
+      });
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("#primary-nav");
+      menuToggle?.addEventListener("click", () => {
+        const open = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!open));
+        nav?.classList.toggle("is-open", !open);
+      });
+      nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+        menuToggle?.setAttribute("aria-expanded", "false");
+        nav?.classList.remove("is-open");
+      }));
+    </script>
+  </body>
+</html>

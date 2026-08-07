@@ -1,0 +1,50 @@
+---
+interface PublicationFrontmatter {
+  year: number;
+  category: "scientific-ml" | "wind" | "software";
+  type: string;
+  title: string;
+  authors: string;
+  venue: string;
+  citations?: number;
+  paperUrl: string;
+  scholarUrl: string;
+  codeUrl?: string;
+  codeLabel?: string;
+  abstractAvailable?: boolean;
+}
+
+interface PublicationEntry {
+  frontmatter: PublicationFrontmatter;
+  Content: any;
+}
+
+interface Props {
+  publication: PublicationEntry;
+  index: number;
+}
+
+const { publication } = Astro.props;
+const { frontmatter, Content } = publication;
+const paperUrl = frontmatter.paperUrl || frontmatter.scholarUrl;
+---
+
+<article class="publication-card" data-category={frontmatter.category}>
+  <div class="publication-year">{frontmatter.year}</div>
+  <div class="publication-main">
+    <p class="publication-type">{frontmatter.type}</p>
+    <h3>{frontmatter.title}</h3>
+    <p class="publication-authors">{frontmatter.authors}</p>
+    <p class="publication-venue">{frontmatter.venue}{frontmatter.citations ? ` · ${frontmatter.citations} citations` : ""}</p>
+    {frontmatter.abstractAvailable !== false && (
+      <details class="publication-details">
+        <summary>Abstract <span aria-hidden="true">+</span></summary>
+        <div class="markdown-body"><Content /></div>
+      </details>
+    )}
+  </div>
+  <div class="publication-actions">
+    <a href={paperUrl} target="_blank" rel="noreferrer">Paper <span aria-hidden="true">↗</span></a>
+    {frontmatter.codeUrl && <a class="code-link" href={frontmatter.codeUrl} target="_blank" rel="noreferrer">Code: {frontmatter.codeLabel || "Repository"} <span aria-hidden="true">↗</span></a>}
+  </div>
+</article>
