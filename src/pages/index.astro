@@ -15,6 +15,7 @@ interface PublicationFrontmatter {
   scholarUrl: string;
   codeUrl?: string;
   codeLabel?: string;
+  codeStars?: number;
 }
 
 interface PublicationEntry {
@@ -206,7 +207,6 @@ const base = import.meta.env.BASE_URL;
                 </a>
               ))}
             </div>
-            {profile.researchGate === "" && <p class="content-note">Add your ResearchGate profile URL in <code>src/data/profile.ts</code>.</p>}
           </div>
         </div>
       </section>
