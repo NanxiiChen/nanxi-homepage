@@ -5,6 +5,7 @@ type: Journal article
 title: "On the training of physics-informed neural operators for solving parametric partial differential equations"
 authors: "N. Chen, C. Cui, A. Chen, S. Wang, R. Ma"
 venue: "Computer Methods in Applied Mechanics and Engineering · 464 (Part B) · 119515"
+citations: 1
 paperUrl: "https://doi.org/10.1016/j.cma.2026.119515"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:MXK_kJrjxJIC"
 codeUrl: "https://github.com/NanxiiChen/PI-CViT"

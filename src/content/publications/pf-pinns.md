@@ -5,7 +5,7 @@ type: Journal article
 title: "PF-PINNs: Physics-informed neural networks for solving coupled Allen-Cahn and Cahn-Hilliard phase field equations"
 authors: "N. Chen, S. Lucarini, R. Ma, A. Chen, C. Cui"
 venue: "Journal of Computational Physics · 529 · 113843"
-citations: 41
+citations: 58
 paperUrl: "https://doi.org/10.1016/j.jcp.2025.113843"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:UeHWp8X0CEIC"
 codeUrl: "https://github.com/NanxiiChen/PF-PINNs"

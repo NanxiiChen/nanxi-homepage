@@ -5,7 +5,7 @@ type: Journal article
 title: "Sharp-PINNs: Staggered hard-constrained physics-informed neural networks for phase field modelling of corrosion"
 authors: "N. Chen, C. Cui, R. Ma, A. Chen, S. Wang"
 venue: "Computer Methods in Applied Mechanics and Engineering · 447"
-citations: 31
+citations: 44
 paperUrl: "https://arxiv.org/abs/2502.11942"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:_FxGoFyzp5QC"
 codeUrl: "https://github.com/NanxiiChen/sharp-pinns"

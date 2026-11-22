@@ -5,7 +5,7 @@ type: Journal article
 title: "Enforcing hidden physics in physics-informed neural networks"
 authors: "N. Chen, S. Wang, R. Ma, A. Chen, C. Cui"
 venue: "Communications Physics"
-citations: 1
+citations: 5
 paperUrl: "https://doi.org/10.1038/s42005-026-02743-z"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:LkGwnXOMwfcC"
 codeUrl: "https://github.com/NanxiiChen/irr-pinns"

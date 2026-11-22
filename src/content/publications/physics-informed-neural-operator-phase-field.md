@@ -5,7 +5,7 @@ type: Preprint
 title: "Physics-informed neural operator for predictive parametric phase-field modelling"
 authors: "N. Chen, A. Chen, R. Ma"
 venue: "arXiv preprint arXiv:2603.09693"
-citations: 1
+citations: 3
 paperUrl: "https://arxiv.org/abs/2603.09693"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:8k81kl-MbHgC"
 codeUrl: "https://github.com/NanxiiChen/PF-PINO"

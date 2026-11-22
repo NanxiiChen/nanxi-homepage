@@ -5,7 +5,7 @@ type: Journal article
 title: "Wind field characterization with skip-connected variational autoencoder for data cleaning under deck disturbance effects"
 authors: "N. Chen, G. Liu, R. Ma, A. Chen, Y. Bai, D. Guo"
 venue: "Engineering Structures · 330 · 119905"
-citations: 8
+citations: 11
 paperUrl: "https://doi.org/10.1016/j.engstruct.2025.119905"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:zYLM7Y9cAGgC"
 ---

@@ -5,7 +5,7 @@ type: Journal article
 title: "Probabilistic modeling of wind characteristics for long-span cable-stayed bridges based on field measurements considering deck disturbance effects"
 authors: "R. Ma, N. Chen, B. Ge, X. Hu, A. Chen"
 venue: "Measurement · 222 · 113617"
-citations: 14
+citations: 15
 paperUrl: "https://doi.org/10.1016/j.measurement.2023.113617"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:d1gkVwhDpl0C"
 ---

@@ -5,6 +5,7 @@ type: Journal article
 title: "Reconciling the accuracy-efficiency trade-off in stochastic wind field simulation: A dual-level parallel algorithmic perspective"
 authors: "N. Chen, G. Liu, J. Zhang, R. Ma, H. Chang, Y. Zhu, X. Qiu, A. Chen"
 venue: "Mechanical Systems and Signal Processing · 258 · 114603"
+citations: 1
 paperUrl: "https://doi.org/10.1016/j.ymssp.2026.114603"
 scholarUrl: "https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=YGQD_t8AAAAJ&citation_for_view=YGQD_t8AAAAJ:3fE2CSJIrl8C"
 codeUrl: "https://github.com/NanxiiChen/wind-simulation-GPU"
