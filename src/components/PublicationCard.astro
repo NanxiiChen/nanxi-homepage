@@ -11,6 +11,7 @@ interface PublicationFrontmatter {
   scholarUrl: string;
   codeUrl?: string;
   codeLabel?: string;
+  codeStars?: number;
   abstractAvailable?: boolean;
 }
 
@@ -45,6 +46,6 @@ const paperUrl = frontmatter.paperUrl || frontmatter.scholarUrl;
   </div>
   <div class="publication-actions">
     <a href={paperUrl} target="_blank" rel="noreferrer">Paper <span aria-hidden="true">↗</span></a>
-    {frontmatter.codeUrl && <a class="code-link" href={frontmatter.codeUrl} target="_blank" rel="noreferrer">Code: {frontmatter.codeLabel || "Repository"} <span aria-hidden="true">↗</span></a>}
+    {frontmatter.codeUrl && <a class="code-link" href={frontmatter.codeUrl} target="_blank" rel="noreferrer">Code: {frontmatter.codeLabel || "Repository"}{frontmatter.codeStars !== undefined && ` · ${frontmatter.codeStars} ${frontmatter.codeStars === 1 ? "star" : "stars"}`} <span aria-hidden="true">↗</span></a>}
   </div>
 </article>

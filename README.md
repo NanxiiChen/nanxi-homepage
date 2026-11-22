@@ -36,13 +36,14 @@ paperUrl: "https://doi.org/..."
 scholarUrl: "https://scholar.google.com/..."
 codeUrl: "https://github.com/NanxiiChen/my-paper-code"
 codeLabel: "my-paper-code"
+codeStars: 5
 ---
 
 A short description of the work. You can use normal Markdown here, including
 [links](https://example.com), lists, and emphasis.
 ```
 
-The file will automatically become a publication card after restarting the dev server or rebuilding. `codeUrl` is optional; only add it when the repository corresponds to that specific paper.
+The file will automatically become a publication card after restarting the dev server or rebuilding. `codeUrl` is optional; only add it when the repository corresponds to that specific paper. `codeStars` is an optional snapshot of the linked GitHub repository’s star count.
 
 All publication abstracts are stored in the Markdown bodies and shown under **Abstract**.
 
